@@ -120,13 +120,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     void loginService(String userName, String password, String macID , String versionNo , String deviceID){
         HandleApiResponse handleApiResponse = new HandleApiResponse(this,"http://www.axienta.lk/VantageCoreWebAPI/api/");
         handleApiResponse.login(userName, password, macID, versionNo, deviceID ,new HandleApiResponse.CallBackDelegate() {
+
+
             @Override
-            public void onResponseSuccess(String result) {
+            public void onResponseSuccess(String result, String loginName) {
                 Log.e("login", "result "+result);
-                if(result.equalsIgnoreCase("Active for another device")){
+                if(!result.equalsIgnoreCase("Login Success!")){
                     customToast(result,"error");
-                   // userService();
+                    // userService();
                 }else {
+                    Utils.setLoginName(loginName ,mContext);
                     userService();
                 }
 

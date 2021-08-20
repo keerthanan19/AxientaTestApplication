@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.assignment.axientatestapplication.Helper.Utils;
 import com.assignment.axientatestapplication.adapter.TaskListAdapter;
 import com.assignment.axientatestapplication.adapter.UserListAdapter;
 import com.assignment.axientatestapplication.data.TaskModel;
@@ -43,11 +44,16 @@ public class UserDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_deatil_activity);
 
-        userID = getIntent().getStringExtra("USER_IDge");
+
+        userID = getIntent().getStringExtra("USER_ID");
 
         TaskList = (RecyclerView) findViewById(R.id.TaskList);
         warning = (TextView) findViewById(R.id.warning);
         mContext = UserDetailActivity.this;
+
+        String tittle = Utils.getLoginName(mContext);
+        setTitle(tittle);
+
 
          taskModelArrayList = DBUtils.getTAskByID(getApplicationContext(),userID);
 
@@ -83,7 +89,7 @@ public class UserDetailActivity extends AppCompatActivity {
 
          if(userModel != null) {
 
-             id.setText(userModel.getId());
+             id.setText(String.valueOf(userModel.getId()));
              name.setText(userModel.getName());
              username.setText(userModel.getUsername());
              email.setText(userModel.getEmail());

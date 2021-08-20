@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.assignment.axientatestapplication.Helper.Utils;
 import com.assignment.axientatestapplication.data.UserModel;
 import com.google.gson.JsonArray;
 
@@ -34,7 +35,7 @@ public class HandleApiResponse {
     }
 
     public interface CallBackDelegate {
-        void onResponseSuccess(String result);
+        void onResponseSuccess(String result,String loginName);
         void onFailure(String error);
     }
 
@@ -57,8 +58,11 @@ public class HandleApiResponse {
                         if (response.body() != null) {
                             JSONArray jsonArray = new JSONArray(String.valueOf(response.body()));
                             JSONObject jsonObject = jsonArray.getJSONObject(0);
+                            Log.d("Login","jsonObject"+jsonObject);
                             String object = jsonObject.getJSONArray("LoginStatus").getJSONObject(0).get("Status").toString();
-                            delegate.onResponseSuccess(object);
+                            String FirstName = jsonObject.getJSONArray("LoginDetails").getJSONObject(0).get("FirstName").toString();
+                            String LastName = jsonObject.getJSONArray("LoginDetails").getJSONObject(0).get("LastName").toString();
+                            delegate.onResponseSuccess(object,FirstName + " " + LastName);
 
                         } else {
                             Log.e("login", "SOMETHING WENT WRONG");

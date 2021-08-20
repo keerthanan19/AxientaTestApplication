@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.assignment.axientatestapplication.Helper.Utils;
 import com.assignment.axientatestapplication.adapter.UserListAdapter;
 import com.assignment.axientatestapplication.data.UserModel;
 import com.assignment.axientatestapplication.database.DBUtils;
@@ -29,6 +30,9 @@ public class UserListActivity extends AppCompatActivity implements UserOnClick {
         userList = (RecyclerView) findViewById(R.id.userList);
         mContext = UserListActivity.this;
         uploadOnClick = this;
+
+        String tittle = Utils.getLoginName(mContext);
+        setTitle(tittle);
 
         ArrayList<UserModel > userModelArrayList = DBUtils.getAllUsers(getApplicationContext());
 
