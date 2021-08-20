@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">AxientaTestApplication</string>
+    <string name="userName_required">User Name Required</string>
+    <string name="password_required">Password Required</string>
+    <string name="internet_connection">Internet Connection</string>
+    <string name="your_not_connect_with_internet">You Are Not Connect With Internet!</string>
+
+    <string name="exit">EXIT</string>
+    <string name="setting">SETTINGS</string>
+
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="signup_login_hint">Already have an account? Sign In</string>
+    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+</resources>
